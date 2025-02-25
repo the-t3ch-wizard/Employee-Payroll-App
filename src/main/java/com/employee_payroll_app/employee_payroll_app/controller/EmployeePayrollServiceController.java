@@ -1,6 +1,6 @@
 package com.employee_payroll_app.employee_payroll_app.controller;
 
-import com.employee_payroll_app.employee_payroll_app.model.EmployeePayroll;
+import com.employee_payroll_app.employee_payroll_app.dto.EmployeePayrollDto;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -18,12 +18,12 @@ public class EmployeePayrollServiceController {
     }
 
     @PostMapping("/create")
-    public String createEmployeePayroll(@RequestBody EmployeePayroll employeePayroll){
+    public String createEmployeePayroll(@RequestBody EmployeePayrollDto employeePayroll){
         return "Create Employee payroll with name: "+employeePayroll.getName()+" and salary as "+employeePayroll.getSalary();
     }
 
     @PutMapping("/update")
-    public String updateEmployeePayroll(@RequestBody EmployeePayroll employeePayroll){
+    public String updateEmployeePayroll(@RequestBody EmployeePayrollDto employeePayroll){
         return "Update Employee payroll for name: "+employeePayroll.getName()+" and salary as "+employeePayroll.getSalary();
     }
 

@@ -1,21 +1,13 @@
-package com.employee_payroll_app.employee_payroll_app.model;
+package com.employee_payroll_app.employee_payroll_app.dto;
 
-import jakarta.persistence.*;
-
-@Entity
-@Table(name = "employee_payrolls")
-public class EmployeePayroll {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class EmployeePayrollDto {
 
     private String name;
     private double salary;
 
-    public EmployeePayroll() {}
+    public EmployeePayrollDto() {}
 
-    public EmployeePayroll(String name, double salary) {
+    public EmployeePayrollDto(String name, double salary) {
         this.name = name;
         this.salary = salary;
     }
@@ -35,4 +27,5 @@ public class EmployeePayroll {
     public void setSalary(double salary) {
         this.salary = salary;
     }
+
 }
