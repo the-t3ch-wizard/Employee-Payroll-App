@@ -1,11 +1,17 @@
 package com.employee_payroll_app.employee_payroll_app.controller;
 
 import com.employee_payroll_app.employee_payroll_app.dto.EmployeePayrollDto;
+import com.employee_payroll_app.employee_payroll_app.model.EmployeePayroll;
+import com.employee_payroll_app.employee_payroll_app.service.EmployeePayrollService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/employeepayrollservice")
 public class EmployeePayrollServiceController {
+
+    @Autowired
+    private EmployeePayrollService employeePayrollService;
 
     @GetMapping(value = {"", "/"})
     public String getEmployeePayrollByDefault(){
@@ -13,23 +19,23 @@ public class EmployeePayrollServiceController {
     }
 
     @GetMapping("/get/{id}")
-    public String getEmployeePayrollById(@PathVariable String id){
-        return "Get Employee payroll of Id: "+id;
+    public EmployeePayroll getEmployeePayrollById(@PathVariable String id){
+        return employeePayrollService.getEmployeePayrollById(Long.parseLong(id));
     }
 
     @PostMapping("/create")
-    public String createEmployeePayroll(@RequestBody EmployeePayrollDto employeePayroll){
-        return "Create Employee payroll with name: "+employeePayroll.getName()+" and salary as "+employeePayroll.getSalary();
+    public EmployeePayroll createEmployeePayroll(@RequestBody EmployeePayrollDto employeePayroll){
+        return employeePayrollService.createEmployeePayroll(employeePayroll);
     }
 
     @PutMapping("/update")
-    public String updateEmployeePayroll(@RequestBody EmployeePayrollDto employeePayroll){
-        return "Update Employee payroll for name: "+employeePayroll.getName()+" and salary as "+employeePayroll.getSalary();
+    public EmployeePayroll updateEmployeePayroll(@RequestBody EmployeePayrollDto employeePayroll){
+        return employeePayrollService.updateEmployeePayroll(employeePayroll);
     }
 
     @DeleteMapping("/delete/{id}")
     public String deleteEmployeePayrollById(@PathVariable String id){
-        return "Delete Employee payroll of Id: "+id;
+        return employeePayrollService.deleteEmployeePayrollById(Long.parseLong(id));
     }
 
 }

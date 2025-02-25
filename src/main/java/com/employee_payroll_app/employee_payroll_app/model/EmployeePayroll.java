@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 public class EmployeePayroll {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
     private String name;
@@ -15,9 +15,23 @@ public class EmployeePayroll {
 
     public EmployeePayroll() {}
 
+    public EmployeePayroll(Long id, String name, double salary) {
+        this.id = id;
+        this.name = name;
+        this.salary = salary;
+    }
+
     public EmployeePayroll(String name, double salary) {
         this.name = name;
         this.salary = salary;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
