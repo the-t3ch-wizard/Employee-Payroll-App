@@ -1,6 +1,7 @@
 package com.employee_payroll_app.employee_payroll_app.service;
 
 import com.employee_payroll_app.employee_payroll_app.dto.EmployeePayrollDto;
+import com.employee_payroll_app.employee_payroll_app.exception.EmployeePayrollNotFoundException;
 import com.employee_payroll_app.employee_payroll_app.model.EmployeePayroll;
 import org.springframework.stereotype.Service;
 
@@ -27,7 +28,7 @@ public class EmployeePayrollService {
                 return employeePayroll;
             }
         }
-        return null;
+        throw new EmployeePayrollNotFoundException(name);
     }
 
     public List<EmployeePayroll> getEmployeePayrolls(){
@@ -48,7 +49,7 @@ public class EmployeePayrollService {
                 return employeePayrolls.get(i);
             }
         }
-        return null;
+        throw new EmployeePayrollNotFoundException(newEmployeePayrollDto);
     }
 
     public String deleteEmployeePayrollById(Long id) {
@@ -58,7 +59,7 @@ public class EmployeePayrollService {
                 return "Deleted Employee payroll with Id: "+id;
             }
         }
-        return "Unable to find employee payroll with Id:"+id;
+        throw new EmployeePayrollNotFoundException(id);
     }
 
 }
